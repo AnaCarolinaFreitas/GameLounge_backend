@@ -20,3 +20,30 @@ const createGame = async (image_url, name, description, rating, genre, age_ratin
     );
     return result.rows[0];
 };
+
+// Function to update an existing game
+const updateGame = async (id, image_url, name, description, rating, genre, age_rating, duration, num_players, developer) => {
+    const result =await pool.query(
+        'UPDATE games SET image_url = $1, name = $2, description = $3, rating = $4, genre = $5, age_rating = $6, duration = $7, num_players = $8, developer = $9 WHERE id = $10 RETURNING *',
+        [image_url, name, description, rating, genre, age_rating, duration, num_players, developer, id]
+    );
+    return result.rows[0];
+};
+
+//Function to delete a game by its ID
+const deleteGame = async (id) => {
+    const result = await pool.query('DELETE FROM games WHERE id =$1 RETURNING *', [id]);
+
+    if (result.rowCount === 0) {
+        return {error: 'Game not found'};
+    }
+    return {message: 'Game deleted successfully'};
+    };
+
+    module.exports = {
+        getAllGames,
+        getGameById,
+        createGame,
+        updateGame,
+        deleteGame
+    };
