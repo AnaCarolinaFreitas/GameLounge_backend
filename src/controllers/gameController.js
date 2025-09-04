@@ -34,3 +34,33 @@ const createGame = async (req, res) => {
         res.status(400).json({ error: 'Erro ao criar jogo' });
     }
 };
+
+const updateGame = async (req, res) => {
+    try {
+        const { image_url, name, description, rating, genre, age_rating, duration, num_players, developer } = req.body;
+        const updatedGame = await gameModel.updateGame(req.params.id, image_url, name, description, rating, genre, age_rating, duration, num_players, developer);
+        if (!updatedGame) {
+            return res.status(404).json({message: 'Jogo não encontrado' });
+        }
+        res.json(updatedGame);
+    } catch (error) {
+        res.status(404).json({message: 'Erro ao atualizar jogo' });
+    }
+};
+
+const deleteGame = async (req, res) => {
+    try{
+        const message = await gameModel.deleteGame(req.params.id);
+        res.json(message);
+    } catch (error) {
+        res.status(404).json({message: 'Erro ao deletar jogo'});
+    }
+};
+
+module.exports = {
+    getAllGames,
+    getGameById,
+    createGame,
+    updateGame,
+    deleteGame
+};
