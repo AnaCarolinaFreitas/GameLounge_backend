@@ -12,12 +12,16 @@ CREATE TABLE games (
     age_rating INT,
     duration INT,
     num_players INT,
-    developer VARCHAR(100)
+    developer VARCHAR(100),
+    comment1 TEXT,
+    comment2 TEXT
 );
 
-INSERT INTO games (image_url, name, description, rating, genre, age_rating, duration, num_players, developer) VALUES
-('https://example.com/images/game1.jpg', 'Adventure Quest', 'An epic adventure game.', 5, 'Adventure', 12, 10, 1, 'Epic Games Studio'),
-('https://example.com/images/game2.jpg', 'Puzzle Mania', 'A challenging puzzle game.', 4, 'Puzzle', 8, 5, 1, 'Puzzle Masters Inc.'),
-('https://example.com/images/game3.jpg', 'Racing Thunder', 'High-speed racing action.', 5, 'Racing', 10, 15, 4, 'Speedster Games'),
-('https://example.com/images/game4.jpg', 'Mystery Island', 'Solve mysteries on a deserted island.', 4, 'Mystery', 12, 20, 2, 'Mystery Makers'),
-('https://example.com/images/game5.jpg', 'Fantasy World', 'Explore a magical fantasy world.', 5, 'Fantasy', 10, 30, 1, 'Fantasy Studios');
+INSERT INTO games (image_url, name, description, rating, genre, age_rating, duration, num_players, developer, comment1, comment2) VALUES
+('dobble.png', 'Dobble', 'Um jogo de cartas rápido e divertido onde os jogadores devem encontrar o símbolo em comum entre duas cartas antes dos outros.', 5, 'Cartas, Observação', 6, 15, 8, 'Asmodee', 'Viciante! Ótimo para jogar com amigos e família.', 'Simples de aprender e perfeito para todas as idades.'),
+('uno.png', 'UNO', 'Clássico jogo de cartas em que o objetivo é ser o primeiro a se livrar de todas as cartas, usando combinações de cores e números.', 5, 'Cartas, Estratégia', 7, 30, 10, 'Mattel', 'Diversão garantida para qualquer idade', 'Um clássico! Cuidado pra não perder as amizades no caminho'),
+('tgcqp.png', 'Taco Gato Cabra Queijo Pizza', 'Jogo de cartas rápido e caótico onde os jogadores precisam falar as palavras certas e bater na carta correta no momento certo.', 4, 'Cartas, Festa', 7, 15, 8, 'Blue Orange Games', 'Rende muitas risadas e confusões!', 'Perfeito para o grupo de amigos'),
+('dixit.png', 'Dixit', 'Um jogo criativo e visual onde os jogadores usam pistas e imaginação para adivinhar cartas ilustradas.', 5, 'Tabuleiro, Criatividade', 8, 40, 6, 'Libellud', 'As ilustrações são lindas', 'Perfeito para quem gosta de usar a criatividade'),
+('trio.png', 'Trio', 'Um jogo de cartas estratégico em que o objetivo é formar trios de números, usando memória e dedução para vencer os adversários.', 4, 'Cartas, Estratégia', 7, 20, 6, 'Repos Production', 'Fácil de aprender e muito competitivo!', 'Ideal para quem gosta de desafios rápidos.'),
+('jenga.png', 'Jenga', 'Um jogo de habilidade e equilíbrio onde os jogadores retiram blocos de madeira de uma torre e os reposicionam no topo sem derrubá-la.', 5, 'Habilidade, Clássico', 6, 15, 8, 'Hasbro', 'Tensão e diversão a cada jogada!', 'Um clássico indispensável para qualquer reunião.');
+
