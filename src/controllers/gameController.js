@@ -1,12 +1,24 @@
 const gameModel = require('../models/gameModel');
 
 const getAllGames = async (req, res) => {
-    try {
-        const games = await gameModel.getAllGames();
-        res.json(games);
-    } catch (error) {
-        res.status(404).json({ error: 'Erro ao buscar jogos' });
-    }
+  try {
+    const { name, age_rating, num_players, duration, genre1, genre2 } = req.query;
+
+    const games = await gameModel.getAllGames({
+      name,
+      age_rating: age_rating ? parseInt(age_rating) : null,
+      num_players: num_players ? parseInt(num_players) : null,
+      duration: duration ? parseInt(duration) : null,
+      genre1,
+      genre2,
+    });
+
+    // 👉 se não encontrar nada, devolve lista vazia com 200
+    return res.json(games);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao buscar jogos" });
+  }
 };
 
 const getGameById = async (req, res) => {

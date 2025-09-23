@@ -1,10 +1,30 @@
 const pool = require('../config/database');
 
 // Function to get all games from the database
-const getAllGames = async () => {
-    const result = await pool.query('SELECT * FROM games');
-    return result.rows;
-}
+const getAllGames = async ({ name, age_rating, num_players, duration, genre1, genre2 }) => {
+  const query = `
+    SELECT *
+    FROM games
+    WHERE ($1::text IS NULL OR name ILIKE $1)
+      AND ($2::int IS NULL OR age_rating = $2)
+      AND ($3::int IS NULL OR num_players = $3)
+      AND ($4::int IS NULL OR duration = $4)
+      AND ($5::text IS NULL OR genre1 = $5 OR genre2 = $5)
+      AND ($6::text IS NULL OR genre1 = $6 OR genre2 = $6)
+  `;
+
+  const values = [
+    name ? `%${name}%` : null,
+    age_rating || null,
+    num_players || null,
+    duration || null,
+    genre1 || null,
+    genre2 || null,
+  ];
+
+  const result = await pool.query(query, values);
+  return result.rows;
+};
 
 // Function to get a game by its ID
 const getGameById = async (id) => {
