@@ -13,19 +13,19 @@ const getGameById = async (id) => {
 };
 
 // Function to create a new game
-const createGame = async (image_url, name, description, rating, genre, age_rating, duration, num_players, developer) => {
+const createGame = async (image_url, name, description, rating, genre1, genre2, age_rating, duration, num_players, developer, mechanics, rules) => {
     const result = await pool.query(
-        'INSERT INTO games (image_url, name, description, rating, genre, age_rating, duration, num_players, developer) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
-        [image_url, name, description, rating, genre, age_rating, duration, num_players, developer]
+        'INSERT INTO games (image_url, name, description, rating, genre1, genre2, age_rating, duration, num_players, developer, mechanics, rules) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *',
+        [image_url, name, description, rating, genre1, genre2, age_rating, duration, num_players, developer, mechanics, rules]
     );
     return result.rows[0];
 };
 
 // Function to update an existing game
-const updateGame = async (id, image_url, name, description, rating, genre, age_rating, duration, num_players, developer) => {
+const updateGame = async (id, image_url, name, description, rating, genre1, genre2, age_rating, duration, num_players, developer, mechanics, rules) => {
     const result =await pool.query(
-        'UPDATE games SET image_url = $1, name = $2, description = $3, rating = $4, genre = $5, age_rating = $6, duration = $7, num_players = $8, developer = $9 WHERE id = $10 RETURNING *',
-        [image_url, name, description, rating, genre, age_rating, duration, num_players, developer, id]
+        'UPDATE games SET image_url = $1, name = $2, description = $3, rating = $4, genre1 = $5, genre2 = $6, age_rating = $7, duration = $8, num_players = $9, developer = $10, mechanics = $11, rules = $12 WHERE id = $13 RETURNING *',
+        [image_url, name, description, rating, genre1, genre2, age_rating, duration, num_players, developer, mechanics, rules, id]
     );
     return result.rows[0];
 };

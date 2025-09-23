@@ -23,8 +23,8 @@ const getGameById = async (req, res) => {
 
 const createGame = async (req, res) => {
     try {
-        const { image_url, name, description, rating, genre, age_rating, duration, num_players, developer } = req.body;
-        const newGame = await gameModel.createGame(image_url, name, description, rating, genre, age_rating, duration, num_players, developer);
+        const { image_url, name, description, rating, genre1, genre2, age_rating, duration, num_players, developer, mechanics, rules } = req.body;
+        const newGame = await gameModel.createGame(image_url, name, description, rating, genre1, genre2, age_rating, duration, num_players, developer, mechanics, rules);
         res.status(201).json(newGame);
     } catch (error) {
         console.log(error);
@@ -37,8 +37,8 @@ const createGame = async (req, res) => {
 
 const updateGame = async (req, res) => {
     try {
-        const { image_url, name, description, rating, genre, age_rating, duration, num_players, developer } = req.body;
-        const updatedGame = await gameModel.updateGame(req.params.id, image_url, name, description, rating, genre, age_rating, duration, num_players, developer);
+        const { image_url, name, description, rating, genre1, genre2, age_rating, duration, num_players, developer, mechanics, rules } = req.body;
+        const updatedGame = await gameModel.updateGame(req.params.id, image_url, name, description, rating, genre1, genre2, age_rating, duration, num_players, developer, mechanics, rules);
         if (!updatedGame) {
             return res.status(404).json({message: 'Jogo não encontrado' });
         }
